@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Search App</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #111;
+            color: white;
+        }
+
+        header {
+            background: #1f1f1f;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            color: #ff4444;
+            margin-bottom: 15px;
+        }
+
+        .search-box {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .search-box input {
+            width: 300px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            outline: none;
+            font-size: 16px;
+        }
+
+        .search-box button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background: red;
+            color: white;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .search-box button:hover {
+            background: darkred;
+        }
+
+        .movies {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 20px;
+            padding: 30px;
+        }
+
+        .movie-card {
+            background: #222;
+            border-radius: 10px;
+            overflow: hidden;
+            text-align: center;
+            transition: .3s;
+            box-shadow: 0 0 10px rgba(255, 255, 255, .2);
+        }
+
+        .movie-card:hover {
+            transform: scale(1.05);
+        }
+
+        .movie-card img {
+            width: 100%;
+            height: 340px;
+            object-fit: cover;
+        }
+
+        .movie-card h2 {
+            margin: 10px 0;
+        }
+
+        .movie-card p {
+            margin: 5px;
+            padding-bottom: 5px;
+        }
+
+        footer {
+            background: #1f1f1f;
+            text-align: center;
+            padding: 15px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <header>
+        <h1>🎬 Movie Search App</h1>
+
+        <div class="search-box">
+            <input type="text" id="searchInput" placeholder="Search Movies...">
+            <button onclick="searchMovie()">Search</button>
+        </div>
+
+    </header>
+
+    <section class="movies">
+
+        <div class="movie-card" data-title="Amaran">
+            <img src="https://victorycinema.in/wp-content/uploads/2024/10/amaran-vc-square4.jpg">
+            <h2>Amaran: love</h2>
+            <p>⭐ Rating: 9.2</p>
+        </div>
+
+        <div class="movie-card" data-title="Horror story">
+            <img
+                src="https://nekonekomovielitterbox.wordpress.com/wp-content/uploads/2014/01/horror-story-poster.jpg?w=584">
+            <h2>Horror story</h2>
+            <p>⭐ Rating: 8.7</p>
+            <p>🚀 Sci-Fi | Thriller </p>
+        </div>
+
+        <div class="movie-card" data-title="Tourist Family">
+            <img
+                src="https://m.media-amazon.com/images/M/MV5BODI3NDljYjgtYmY2Mi00MDcxLWExYTgtNWI3NDQ0MjYzZDk5XkEyXkFqcGc@._V1_.jpg">
+            <h2>Tourist Family</h2>
+            <p>⭐ Rating: 8.5</p>
+            <p> Fun | Family Story</p>
+        </div>
+
+        <div class="movie-card" data-title="Vaazha">
+            <img
+                src="https://cdn.district.in/movies-assets/images/cinema/Vaala-2_ENGLISH_Poster-4e5ee1e0-3fa9-11f1-9464-dfcf31194b51.jpg?im=Resize,width=400">
+            <h2>Vaazha</h2>
+            <p>⭐ Rating: 9.3</p>
+            <p>❄ Friends| Fun</p>
+        </div>
+
+    </section>
+
+    <footer>
+        <p>© 2026 Movie Search App | HTML • CSS • JavaScript</p>
+    </footer>
+
+    <script>
+        function searchMovie() {
+
+            let input = document.getElementById("searchInput").value.toLowerCase();
+
+            let movies = document.querySelectorAll(".movie-card");
+
+            movies.forEach(function (movie) {
+
+                let title = movie.getAttribute("data-title").toLowerCase();
+
+                if (title.includes(input)) {
+                    movie.style.display = "block";
+                }
+                else {
+                    movie.style.display = "none";
+                }
+
+            });
+
+            // Show all movies if search box is empty
+            if (input === "") {
+                movies.forEach(function (movie) {
+                    movie.style.display = "block";
+                });
+            }
+
+        }
+
+        document.getElementById("searchInput").addEventListener("keyup", searchMovie);
+    </script>
+
+</body>
+
+</html>
